@@ -1,0 +1,41 @@
+<div>
+  <div
+    style="
+      height: 30px;
+      margin-top: 45px;
+      display: flex;
+      align-items: center;
+  "
+  >
+    <input
+      type="checkbox"
+      style="margin-right: 10px"
+      (change)="checkUncheckedAll()"
+    />
+    <label>Selecionar Todos</label>
+  </div>
+
+  <div
+    style="
+      border: 1px solid #bfc3c7;
+      height: 305px;
+      border-radius: 4px;
+      overflow: auto;
+      display: flex;
+      flex-wrap: wrap;
+  "
+  >
+    <div
+      style="
+          width: 40%;
+          align-items: center;
+          margin-top: 20px;
+          margin-left: 20px;
+      "
+      *ngFor="let institution of institutions"
+    >
+      <input type="checkbox" style="margin-right: 10px" />
+      <label>{{ institution.code }} - {{ institution.name }}</label>
+    </div>
+  </div>
+</div>

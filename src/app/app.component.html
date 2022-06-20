@@ -34,7 +34,13 @@
       "
       *ngFor="let institution of institutions"
     >
-      <input type="checkbox" style="margin-right: 10px" />
+      <input
+        type="checkbox"
+        style="margin-right: 10px"
+        [(ngModel)]="institution.checked"
+        value="{{ institution.id }}"
+        (change)="isAllSelected()"
+      />
       <label>{{ institution.code }} - {{ institution.name }}</label>
     </div>
   </div>

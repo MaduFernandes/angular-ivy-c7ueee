@@ -10,6 +10,7 @@ import { InstitutionsService } from './services/institutions.service';
 export class AppComponent implements OnInit {
   institutions: IInstitutions[];
   isChecked: boolean;
+  allChecked: boolean;
   checkedInstitutions;
 
   constructor(private institutionService: InstitutionsService) {}
@@ -27,14 +28,14 @@ export class AppComponent implements OnInit {
   }
 
   checkUncheckedAll() {
-    for (var index = 0; index < this.institutions.length; index++) {
-      if (this.institutions[index].checked === true) {
-        this.institutions[index].checked = false;
-      } else {
-        this.institutions[index].checked = true;
+    this.institutions.forEach((institution) => {
+      if (this.allChecked === true) {
+        institution.checked = false;
       }
-    }
 
+      institution.checked = true;
+      this.allChecked = true;
+    });
     this.getCheckedItemList();
   }
 
@@ -48,10 +49,10 @@ export class AppComponent implements OnInit {
 
   getCheckedItemList() {
     this.checkedInstitutions = [];
-    for (var i = 0; i < this.institutions.length; i++) {
-      if (this.institutions[i].checked)
-        this.checkedInstitutions.push(this.institutions[i]);
-    }
-    this.checkedInstitutions = JSON.stringify(this.checkedInstitutions);
+    this.institutions.map((institution) => {
+      if (institution.checked) {
+        this.checkedInstitutions.push(institution);
+      }
+    });
   }
 }
